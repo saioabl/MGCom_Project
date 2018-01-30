@@ -60,3 +60,12 @@ alpha_PLL = 2*pi*fs/1000;  % rad/s, bandwidth (alpha_cc/100)
 Ki_PLL = alpha_PLL^2;      % Integral gain
 Kp_PLL = alpha_PLL*2;      % Proportional gain
 samp_delay = 1.5*Ts;       % phase delay b.of discretization 1*Ts + 0.5 Ts
+
+% *************************************************************************
+% Duty Cycle calculation block
+% *************************************************************************
+
+D_up = 0.9999;  % upper limit duty cycle
+D_low = 0.0001; % lower limit duty cycle
+
+
