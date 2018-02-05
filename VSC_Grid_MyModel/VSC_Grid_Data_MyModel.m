@@ -48,7 +48,7 @@ VLL_rms = 230*sqrt(3); % V
 % *************************************************************************
 
 alpha_cc = 2*pi*fs/10; % rad/s, bandwidth (2*pi*500)
-Ki_cc = alpha_cc*Rf;   % Integral gain
+Ki_cc = 2*alpha_cc*Rf;   % Integral gain
 Kp_cc = alpha_cc*Lf;   % Proportional gain 
 
 
@@ -60,6 +60,8 @@ alpha_PLL = 2*pi*fs/1000;  % rad/s, bandwidth (alpha_cc/100)
 Ki_PLL = alpha_PLL^2;      % Integral gain
 Kp_PLL = alpha_PLL*2;      % Proportional gain
 samp_delay = 1.5*Ts;       % phase delay b.of discretization 1*Ts + 0.5 Ts
+fnmax = 51;                % Hz
+fnmin = 49;                % Hz
 
 % *************************************************************************
 % Duty Cycle calculation block
@@ -68,4 +70,8 @@ samp_delay = 1.5*Ts;       % phase delay b.of discretization 1*Ts + 0.5 Ts
 D_up = 0.9999;  % upper limit duty cycle
 D_low = 0.0001; % lower limit duty cycle
 
+% *************************************************************************
+% LPF - Power Loop
+% *************************************************************************
 
+alpha_PQ = alpha_cc/10;
