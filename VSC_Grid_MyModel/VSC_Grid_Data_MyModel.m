@@ -73,7 +73,7 @@ Kp_cc = alpha_cc*Lf;     % Proportional gain
 % *************************************************************************
 
 alpha_dcc = alpha_cc/10;     % rad/s, bandwidth(2*pi*50)
-Cv_dcc = 0.5*alpha_dcc*C_dc; % can be chose 0..alpha_dcc*C_dc
+Cv_dcc = 0.5*alpha_dcc*C_dc; % Virtual Damping, values: 0..alpha_dcc*C_dc
 Ki_dcc = alpha_dcc*Cv_dcc;   % Integral gain
 Kp_dcc = alpha_dcc*C_dc;     % Proportional gain
 
