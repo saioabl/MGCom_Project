@@ -37,9 +37,14 @@ Lf=2e-3;         % H, filter inductance
 % *************************************************************************
 
 %  Voltage source
-fn = 50;               % Hz, rated frequency
-wn = 2*pi*fn;          % rad/s, rated angular frequency
-VLL_rms = 230*sqrt(3); % V
+fn = 50;                % Hz, rated frequency
+wn = 2*pi*fn;           % rad/s, rated angular frequency
+VLL_rms = 230*sqrt(3);  % V
+VLL_peak = 230*sqrt(2); % V
+
+% Load
+P_nw = 21.2;                   %kW
+R_nw = VLL_peak^2/(P_nw*1000); %ohms 
 
 
 % *************************************************************************
