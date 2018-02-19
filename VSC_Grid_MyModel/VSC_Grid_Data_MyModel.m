@@ -32,7 +32,6 @@ Ron = 1e-3;      % ohms, conducting resistance IGBT
 Rf=6e-3;         % ohm, filter resistance
 Lf=2e-3;         % H, filter inductance
 
-
 % *************************************************************************
 % Network model
 % *************************************************************************
@@ -41,15 +40,6 @@ Lf=2e-3;         % H, filter inductance
 fn = 50;               % Hz, rated frequency
 wn = 2*pi*fn;          % rad/s, rated angular frequency
 VLL_rms = 230*sqrt(3); % V
-
-
-% *************************************************************************
-% Current Controller (cc)-- L.H book
-% *************************************************************************
-
-alpha_cc = 2*pi*fs/10; % rad/s, bandwidth (2*pi*500)
-Ki_cc = 2*alpha_cc*Rf;   % Integral gain
-Kp_cc = alpha_cc*Lf;   % Proportional gain 
 
 
 % *************************************************************************
@@ -71,7 +61,24 @@ D_up = 0.9999;  % upper limit duty cycle
 D_low = 0.0001; % lower limit duty cycle
 
 % *************************************************************************
+% Current Controller (cc)-- L.H book
+% *************************************************************************
+
+alpha_cc = 2*pi*fs/10;   % rad/s, bandwidth (2*pi*500)
+Ki_cc = 2*alpha_cc*Rf;   % Integral gain
+Kp_cc = alpha_cc*Lf;     % Proportional gain 
+
+% *************************************************************************
+% DC Link Controller (dcc) -- Peiyuan's papers
+% *************************************************************************
+
+alpha_dcc = alpha_cc/10;     % rad/s, bandwidth(2*pi*50)
+Cv_dcc = alpha_dcc*C_dc; % Virtual Damping, values: 0..alpha_dcc*C_dc
+Ki_dcc = alpha_dcc*Cv_dcc;   % Integral gain
+Kp_dcc = alpha_dcc*C_dc;     % Proportional gain
+
+% *************************************************************************
 % LPF - Power Loop
 % *************************************************************************
 
-alpha_PQ = alpha_cc/10;
+alpha_PQ = alpha_cc/10; % rad/s (2*pi*50)
